@@ -1,4 +1,4 @@
-package ru.smartfinance.dengoplat;
+package ru.smartfinance.bistrozaym;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-class DengoplatWebViewClient extends WebViewClient {
+class CustomWebViewClient extends WebViewClient {
 
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {

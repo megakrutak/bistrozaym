@@ -1,4 +1,4 @@
-package ru.smartfinance.dengoplat;
+package ru.smartfinance.bistrozaym;
 
 import org.junit.Test;
 

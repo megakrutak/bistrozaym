@@ -1,4 +1,4 @@
-package ru.smartfinance.dengoplat;
+package ru.smartfinance.bistrozaym;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
