@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="partner_names">
+        <item>Kredito24|kredito24.ru</item>
+        <item>еКапуста|e-kapusta.ru</item>
+        <item>Ezaem|ezaem.ru</item>
+        <item>МИГ Кредит|migcredit.ru</item>
+        <item>МИГ Кредит|m.migcredit.ru</item>
+        <item>Честное слово|4slovo.ru</item>
+        <item>Konga|konga.ru</item>
+        <item>MoneyMan|moneyman.ru</item>
+        <item>Вкармане|vkarmane-online.ru</item>
+        <item>смс финанс|smsfinance.ru</item>
+        <item>platiza|platiza.ru</item>
+    </string-array>
+</resources>

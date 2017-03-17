@@ -2,10 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/background_light</item>
-        <item name="colorPrimaryDark">@android:color/holo_blue_dark</item>
-        <item name="colorAccent">@android:color/holo_blue_dark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorForeground">@android:color/primary_text_light_nodisable</item>
+    </style>
+
+    <style name="AppThemeWithActionBar" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorForeground">@android:color/primary_text_light_nodisable</item>
     </style>
 

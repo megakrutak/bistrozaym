@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Быстрые наличные</string>
     <string name="main_url">http://bistro-zaym.ru/?utm_source="android-app"</string>
+    <string name="loading_title">Загрузка данных…</string>
 </resources>
