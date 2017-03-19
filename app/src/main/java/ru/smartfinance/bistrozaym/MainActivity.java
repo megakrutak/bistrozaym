@@ -4,7 +4,9 @@ import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -17,20 +19,42 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.yandex.metrica.YandexMetrica;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private WebView mWebView;
-    private ProgressBar mPreloader;
     final private int REQUEST_READ_PHONE_STATE = 1;
     final private int REQUEST_GET_ACCOUNTS = 2;
+    final private String APP_PREFERENCES = "bistrozaym_preferences";
+    final private String APP_PREFERENCES_ACCOUNTS_RECEIVED = "accounts_received";
+
+    private Helper helper;
+    private SharedPreferences mPreferences;
+    private boolean mAccountsReceived = false;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPreloader = (ProgressBar) findViewById(R.id.preloader);
         initWebView(getResources().getString(R.string.main_url));
-        checkPermissions();
+        helper = new Helper(this);
+        mPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        if (mPreferences.contains(APP_PREFERENCES_ACCOUNTS_RECEIVED)) {
+            mAccountsReceived = mPreferences.getBoolean(APP_PREFERENCES_ACCOUNTS_RECEIVED, false);
+        }
+
+        if (!mAccountsReceived) {
+            checkPermissionsForAccounts();
+        }
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     @Override
@@ -43,40 +67,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences.Editor editor = mPreferences.edit();
+        if (mAccountsReceived) {
+            editor.putBoolean(APP_PREFERENCES_ACCOUNTS_RECEIVED, true);
+            editor.apply();
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case REQUEST_READ_PHONE_STATE:
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-                    String mPhoneNumber = tMgr.getLine1Number();
-                }
-                return;
             case REQUEST_GET_ACCOUNTS:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     AccountManager am = AccountManager.get(this);
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
-                    Account[] acc = am.getAccounts();
-
-                    for (Account ac: acc) {
-                        Log.i("accounts", ac.toString());
+                    for (Account account: am.getAccounts()) {
+                        JSONObject accountInfo = new JSONObject();
+                        if (helper.isPhone(account.name) || helper.isEmail(account.name)) {
+                            try {
+                                accountInfo.put("account_name", account.name + "|" + account.type);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        YandexMetrica.reportEvent("accounts", accountInfo.toString());
+                        mAccountsReceived = true;
                     }
                 }
         }
     }
 
-    private void checkPermissions() {
-        /*int checkPermissionReadPhoneState
-                = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
-
-        if (checkPermissionReadPhoneState != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_PHONE_STATE},
-                    REQUEST_READ_PHONE_STATE);
-        }*/
-
+    private void checkPermissionsForAccounts() {
         int checkPermissionGetAccounts
                 = ContextCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS);
 
