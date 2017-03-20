@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "995543158069-riucic619te6bp5bfj668sjj7kr21i2l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.smartfinance.bistrozaym",
+            "certificate_hash": "9d8a9ff5852ea6e1c552e2716cdf6b98361f235b"
+          }
+        },
+        {
           "client_id": "995543158069-424ru7eh73tpemhaao38j563nnetk1l1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
