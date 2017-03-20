@@ -11,7 +11,7 @@ import com.yandex.metrica.push.YandexMetricaPush;
 
 public class BistrozaymApp extends Application {
 
-    final private String APP_METRICA_API_KEY = "f68de7ae-dc8f-4acf-826a-9d34646e6c4b";
+    final private String APP_METRICA_API_KEY = "57b14ecf-07ec-4b46-b04b-dec104e9b0ca";
 
     @Override
     public void onCreate() {
