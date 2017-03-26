@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context="ru.smartfinance.bistrozaym.PreloaderActivity"
-    android:gravity="center">
+    android:background="@android:color/white"
+    android:gravity="center"
+    tools:context="ru.smartfinance.bistrozaym.PreloaderActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -15,20 +15,21 @@
          android:fitsSystemWindows. -->
 
     <TextView
-        android:text="₽"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textColorLink="@color/colorAccent"
-        android:textColor="@color/colorAccent"
-        android:textStyle="normal|bold"
-        android:textSize="100sp"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:selectAllOnFocus="false"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="10"
         android:singleLine="true"
         android:soundEffectsEnabled="false"
-        android:shadowRadius="10"
-        android:shadowDy="10"
-        android:shadowDx="10" />
+        android:text="₽"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="100sp"
+        android:textStyle="normal|bold" />
 
 </RelativeLayout>
