@@ -4,21 +4,20 @@ import android.content.Context;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by mihail on 18.03.2017.
- */
 
-public class Helper {
+class Helper {
 
     private Context context;
+    private ArrayList<String> partnerDomains;
 
-    public Helper(Context context) {
+    Helper(Context context) {
         this.context = context;
     }
 
@@ -28,7 +27,7 @@ public class Helper {
      * @param url String
      * @return String
      */
-    public String getPartnerNameByUrl(String url) throws URISyntaxException {
+    String getPartnerNameByUrl(String url) throws URISyntaxException {
         String domain = parseDomainName(url);
         String[] array = context.getResources().getStringArray(R.array.partner_names);
 
@@ -47,9 +46,9 @@ public class Helper {
      * Парсит домен из url
      * @param url String
      * @return String
-     * @throws URISyntaxException
+     * @throws URISyntaxException Исключение
      */
-    public String parseDomainName(String url) throws URISyntaxException {
+    private String parseDomainName(String url) throws URISyntaxException {
         URI uri = new URI(url);
         String domain = uri.getHost();
         return domain.startsWith("www.") ? domain.substring(4) : domain;
@@ -60,7 +59,7 @@ public class Helper {
      * @param email String
      * @return boolean
      */
-    public boolean isEmail(String email) {
+    boolean isEmail(String email) {
         return Pattern.matches("[a-zA-Z_\\-0-9]+@[a-zA-Z_\\-0-9]+?\\.[a-zA-Z]{2,6}", email);
     }
 
@@ -69,7 +68,44 @@ public class Helper {
      * @param phone String
      * @return boolean
      */
-    public boolean isPhone(String phone) {
+    boolean isPhone(String phone) {
         return Pattern.matches("\\+?\\d[-(]?\\d{3}[-)]?\\d{3}-?\\d{2}-?\\d{2}", phone);
+    }
+
+    /**
+     * Заполняет список доменов партнеров
+     *
+     * @param partnerDomains ArrayList<String>
+     */
+    void setPartnerDomains(ArrayList<String> partnerDomains) {
+        this.partnerDomains = partnerDomains;
+    }
+
+    /**
+     * Возвращает список доменов-партнеров
+     *
+     * @return String[]
+     */
+    ArrayList<String> getPartnerDomains() {
+        return partnerDomains;
+    }
+
+    /**
+     * Парсит параметр query-запроса
+     *
+     * @param key String
+     * @param query String
+     * @return String
+     */
+    String parseQueryParam(String key, String query) {
+        String[] params = query.split("&");
+        for (String param: params) {
+            String[] keyValue = param.split("=");
+            if (keyValue.length > 1 && keyValue[0].equals(key)) {
+                return keyValue[1];
+            }
+        }
+
+        return null;
     }
 }

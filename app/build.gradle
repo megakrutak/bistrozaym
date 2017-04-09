@@ -32,8 +32,28 @@ dependencies {
     compile 'com.google.firebase:firebase-core:10.0.1'
     compile "com.yandex.android:mobmetricapushlib:0.5.0"
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'org.jsoup:jsoup:1.10.2'
 
     testCompile 'junit:junit:4.12'
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+// Add plugin https://bitbucket.org/hvisser/android-apt
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+// Apply plugin
+apply plugin: 'com.neenbedankt.android-apt'
+
+// Add Dagger dependencies
+dependencies {
+    compile 'com.google.dagger:dagger:2.7'
+    apt 'com.google.dagger:dagger-compiler:2.7'
+}

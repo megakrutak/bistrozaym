@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWebView(getResources().getString(R.string.main_url));
-        helper = new Helper(this);
+        helper = BistrozaymApp.getComponent().getHelper();
         mPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         if (mPreferences.contains(APP_PREFERENCES_ACCOUNTS_RECEIVED)) {
             mAccountsReceived = mPreferences.getBoolean(APP_PREFERENCES_ACCOUNTS_RECEIVED, false);
@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(client);
         mWebView.setWebChromeClient(webChromeClient);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.addJavascriptInterface(new MainJavaScriptInterface(), "HtmlHandler");
         mWebView.loadUrl(url);
     }
 }

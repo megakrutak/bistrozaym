@@ -11,6 +11,8 @@ import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.yandex.metrica.YandexMetrica;
+
 class MainWebViewClient extends WebViewClient {
 
     @Override
@@ -21,6 +23,8 @@ class MainWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        view.loadUrl("javascript:window.HtmlHandler.handleHtml" +
+                "('<html>'+document.getElementsByTagName('html')[0].innerHTML+'</html>');");
         ProgressBar preloader = (ProgressBar) ((Activity) view.getContext()).findViewById(R.id.preloader);
         preloader.setVisibility(View.INVISIBLE);
     }
@@ -29,8 +33,12 @@ class MainWebViewClient extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView webView, String url) {
 
         if (!url.contains("bistro-zaym.ru")) {
-            Activity mainActivity = (Activity) webView.getContext();
+            String domain = BistrozaymApp.getComponent().getHelper().parseQueryParam("aff_sub-name", url);
+            if (domain != null) {
+                YandexMetrica.reportEvent("clickPartner", domain);
+            }
 
+            Activity mainActivity = (Activity) webView.getContext();
             Intent intent = new Intent(mainActivity, PartnerActivity.class);
             intent.putExtra(PartnerActivity.EXTRA_URL, url);
             mainActivity.startActivity(intent);
