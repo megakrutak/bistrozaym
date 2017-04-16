@@ -1,4 +1,4 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

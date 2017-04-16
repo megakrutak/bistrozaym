@@ -1,4 +1,4 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import android.Manifest;
 import android.accounts.Account;
@@ -6,18 +6,14 @@ import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.yandex.metrica.YandexMetrica;
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private WebView mWebView;
     final private int REQUEST_READ_PHONE_STATE = 1;
     final private int REQUEST_GET_ACCOUNTS = 2;
-    final private String APP_PREFERENCES = "bistrozaym_preferences";
+    final private String APP_PREFERENCES = "bistrocash_preferences";
     final private String APP_PREFERENCES_ACCOUNTS_RECEIVED = "accounts_received";
 
     private Helper helper;
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWebView(getResources().getString(R.string.main_url));
-        helper = BistrozaymApp.getComponent().getHelper();
+        helper = BistroCashApp.getComponent().getHelper();
         mPreferences = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         if (mPreferences.contains(APP_PREFERENCES_ACCOUNTS_RECEIVED)) {
             mAccountsReceived = mPreferences.getBoolean(APP_PREFERENCES_ACCOUNTS_RECEIVED, false);

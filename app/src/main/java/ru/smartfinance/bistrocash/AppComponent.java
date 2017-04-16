@@ -1,7 +1,6 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import dagger.Component;
-import dagger.Provides;
 
 @Component(modules = {AppModule.class})
 public interface AppComponent {

@@ -1,4 +1,4 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import android.app.Application;
 import android.content.Context;
@@ -11,7 +11,7 @@ public class AppModule {
 
     Application app;
 
-    AppModule(BistrozaymApp app) {
+    AppModule(BistroCashApp app) {
         this.app = app;
     }
     @Provides

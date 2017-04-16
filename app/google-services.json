@@ -8,28 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:995543158069:android:c19faa55bc775117",
+        "mobilesdk_app_id": "1:995543158069:android:d5bc955f6bf2c1d3",
         "android_client_info": {
-          "package_name": "ru.smartfinance.bistrozaym"
+          "package_name": "ru.smartfinance.bistrocash"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "995543158069-riucic619te6bp5bfj668sjj7kr21i2l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ru.smartfinance.bistrozaym",
-            "certificate_hash": "9d8a9ff5852ea6e1c552e2716cdf6b98361f235b"
-          }
-        },
-        {
-          "client_id": "995543158069-424ru7eh73tpemhaao38j563nnetk1l1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "ru.smartfinance.bistrozaym",
-            "certificate_hash": "21ad09889fa8bd4d9d4b59a4b2fa4704a5e7f485"
-          }
-        },
         {
           "client_id": "995543158069-1j5j4ek6gc01g6a913mtdsf60uethg9n.apps.googleusercontent.com",
           "client_type": 3
@@ -45,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "995543158069-1j5j4ek6gc01g6a913mtdsf60uethg9n.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

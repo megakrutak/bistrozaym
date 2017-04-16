@@ -1,4 +1,4 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

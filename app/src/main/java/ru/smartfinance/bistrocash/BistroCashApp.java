@@ -1,18 +1,15 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import android.app.Application;
 
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.push.YandexMetricaPush;
 
-import dagger.Component;
-import dagger.internal.DaggerCollections;
-
 /**
  * Created by mihail on 18.03.2017.
  */
 
-public class BistrozaymApp extends Application {
+public class BistroCashApp extends Application {
 
     final private String APP_METRICA_API_KEY = "57b14ecf-07ec-4b46-b04b-dec104e9b0ca";
     private static AppComponent component;

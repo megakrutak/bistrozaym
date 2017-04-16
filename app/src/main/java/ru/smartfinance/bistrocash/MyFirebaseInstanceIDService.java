@@ -1,9 +1,5 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
-import android.util.Log;
-
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.FirebaseInstanceIdService;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;

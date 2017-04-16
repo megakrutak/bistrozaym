@@ -1,4 +1,4 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
 import org.junit.Test;
 

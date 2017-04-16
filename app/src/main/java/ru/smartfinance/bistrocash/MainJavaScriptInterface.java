@@ -1,6 +1,5 @@
-package ru.smartfinance.bistrozaym;
+package ru.smartfinance.bistrocash;
 
-import android.util.Log;
 import android.webkit.JavascriptInterface;
 
 import org.jsoup.Jsoup;
@@ -8,8 +7,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 class MainJavaScriptInterface {
@@ -17,7 +14,7 @@ class MainJavaScriptInterface {
     @JavascriptInterface
     public void handleHtml(String html) {
         Document doc = Jsoup.parse(html);
-        Helper helper = BistrozaymApp.getComponent().getHelper();
+        Helper helper = BistroCashApp.getComponent().getHelper();
 
         ArrayList<String> domains = new ArrayList<>();
         Elements links = doc.select("section.s2 div.single a[href]");
